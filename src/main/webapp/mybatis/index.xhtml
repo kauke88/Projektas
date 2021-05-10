@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Students:</h2>
+    <h:form>
+        <h:inputText a:placeholder="name" value="#{studentsMyBatis.studentToCreate.name}" required="true" />
+        <h:commandButton value="Add new student" action="#{studentsMyBatis.createStudent}" ></h:commandButton>
+    </h:form>
+    <table border = "1" class="center">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Delete?</td>
+        </tr>
+        <ui:repeat value="#{studentsMyBatis.allStudents}" var="student">
+            <tr>
+                <td>#{student.id}</td>
+                <td><h:link value="#{student.name}" outcome="/mybatis/student?studentId=#{student.id}" /></td>
+                <td><h:form><h:commandButton value="Delete" action="#{studentsMyBatis.deleteStudent(student)}" ></h:commandButton></h:form></td>
+            </tr>
+        </ui:repeat>
+    </table>
+    <h2>Courses:</h2>
+    <table border = "1" class="center">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Delete?</td>
+        </tr>
+        <ui:repeat value="#{coursesMyBatis.allCourses}" var="course">
+            <tr>
+                <td>#{course.id}</td>
+                <td><h:link value="#{course.name}" outcome="/mybatis/course?courseId=#{course.id}" /></td>
+                <td><h:form><h:commandButton value="Delete" action="#{coursesMyBatis.deleteCourse(course)}" ></h:commandButton></h:form></td>
+            </tr>
+        </ui:repeat>
+        <h:form>
+            <h:inputText a:placeholder="name" value="#{coursesMyBatis.courseToCreate.name}" required="true" />
+            <h:commandButton value="Add new course" action="#{coursesMyBatis.createCourse}" />
+        </h:form>
+    </table>
+    <p><h:form>
+        <h:inputText a:placeholder="student id" binding="#{inputStudent}" required="true" />
+        <h:inputText a:placeholder="course id" binding="#{inputCourse}" required="true" />
+        <h:commandButton value="Add course to student" action="#{studentsMyBatis.addCourseToStudent(inputCourse.value, inputStudent.value)}" ></h:commandButton>
+    </h:form>
+    </p>
+    <p><h:link outcome="/mybatis/cars" value="Cars"/></p>
+    <p><a href="http://localhost:8080/psk/index.xhtml">MainPageNormal</a></p>
+</h:body>
+</html>

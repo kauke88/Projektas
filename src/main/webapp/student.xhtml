@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<body>
+<h2>#{coursesForStudent.student.name} courses:</h2>
+<table border = "1" class="center">
+    <tr>
+
+        <td>Course Name:</td>
+    </tr>
+    <ui:repeat value="#{coursesForStudent.student.courses}" var="course">
+        <tr>
+            <td>#{course.name}</td>
+        </tr>
+    </ui:repeat>
+</table>
+<h3>#{coursesForStudent.student.name} cars:</h3>
+<table border = "1" class="center">
+    <tr>
+        <td>Name</td>
+    </tr>
+    <ui:repeat value="#{carsForStudent.student.cars}" var="car">
+        <tr>
+            <td>#{car.name}</td>
+        </tr>
+    </ui:repeat>
+</table>
+<p><h:link outcome="index" value="Main Page"/></p>
+</body>
+</html>
